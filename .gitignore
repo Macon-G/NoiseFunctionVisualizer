@@ -1,0 +1,64 @@
+# CMake build directories
+/build/
+/build-*/
+/cmake-build-*/
+/out/
+
+# CMake-generated files (for in-source builds)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+Testing/
+_deps/
+
+# Visual Studio and MSVC
+.vs/
+*.sln
+*.slnx
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.obj
+*.o
+*.pch
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.recipe
+*.lib
+*.exp
+*.dll
+*.exe
+
+# Other build systems and generated output
+/Debug/
+/Release/
+/RelWithDebInfo/
+/MinSizeRel/
+x64/
+x86/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.code-workspace
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*~
+*.swp
+
+# Runtime-generated configuration and logs
+imgui.ini
+*.log
+
+# Operating system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
