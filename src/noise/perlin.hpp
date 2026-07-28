@@ -2,8 +2,6 @@
 
 #include "generator.hpp"
 
-#include <array>
-
 namespace Noise {
 	class Perlin final : public Generator {
 	public:
