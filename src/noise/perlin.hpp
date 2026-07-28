@@ -9,7 +9,6 @@ namespace Noise {
 	public:
 		explicit Perlin(uint32_t seed);
 
-		[[nodiscard]] float Sample(float x) const override;
 		[[nodiscard]] float Sample(float x, float y) const override;
 	
 	private:

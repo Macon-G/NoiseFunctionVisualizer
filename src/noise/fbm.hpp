@@ -1,9 +1,6 @@
 #pragma once
 
 #include "generator.hpp"
-#include "noise_project.hpp"
-
-#include <memory>
 
 namespace Noise {
 	class FBM final : public Generator {
@@ -15,7 +12,6 @@ namespace Noise {
 			float gain
 		);
 
-		[[nodiscard]] float Sample(float x) const override;
 		[[nodiscard]] float Sample(float x, float y) const override;
 	private:
 		const Generator& source_;

@@ -23,7 +23,7 @@ App::App() {
 		throw;
 	}
 
-	window_manager_.AddWindow<TestWindow>(show_demo_window_);
+	//window_manager_.AddWindow<TestWindow>(show_demo_window_);
 	window_manager_.AddWindow<SettingsWindow>(project_);
 	window_manager_.AddWindow<NoiseViewWindow>(project_);
 }
@@ -146,9 +146,9 @@ void App::Shutdown() noexcept {
 void App::DrawGui() {
 	window_manager_.Draw();
 
-	if (show_demo_window_) {
-		ImGui::ShowDemoWindow(&show_demo_window_);
-	}
+	// if (show_demo_window_) {
+	// 	ImGui::ShowDemoWindow(&show_demo_window_);
+	// }
 }
 
 void App::RenderFrame() {

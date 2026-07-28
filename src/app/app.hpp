@@ -24,7 +24,7 @@ private:
 	NoiseProject project_;
 	WindowManager window_manager_;
 
-	bool show_demo_window_ = true;
+	// bool show_demo_window_ = true;
 
 	float clear_color_[4] = { 0.15f, 0.15f, 0.18f, 1.0f };
 

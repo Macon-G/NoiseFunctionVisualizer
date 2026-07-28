@@ -12,22 +12,22 @@ Noise::FBM::FBM(
 {}
 
 
-[[nodiscard]] float Noise::FBM::Sample(float x, float y) {
-	float sum = source_.Sample(x, y);
-	float max_amplitude = 1;
+float Noise::FBM::Sample(float x, float y) const {
+	float value = 0.0f;
+	float amplitude = 1.0f;
+	float frequency = 1.0f;
+	float max_amplitude = 0.0f;
 
-	for (size_t i = 1; i <= octaves_; ++i) {
-		// Frequency doubles with each octave
-		float sx = x * i * 2;
-		float sy = y * i * 2;
+	for (uint32_t i = 0; i < octaves_; ++i) {
+		value += source_.Sample(
+			static_cast<float>(x) * frequency,
+			static_cast<float>(y) * frequency
+		) * amplitude;
 
-		float value = source_.Sample(sx, sy);
-
-		// Amplitude decreases with each octave
-		sum += value / i * 2;
-
-		// Accumulate maximum amplitude
-		max_amplitude += 1 / (i * 2);
+		max_amplitude += amplitude;
+		frequency *= lacunarity_;
+		amplitude *= gain_;
 	}
-	return sum / max_amplitude;
+
+	return max_amplitude > 0 ? value / max_amplitude : 0;
 }

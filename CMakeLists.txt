@@ -95,7 +95,7 @@ add_executable(NoiseFunctionVisualizer
 
     src/hash/hash.cpp
 
-    # src/noise/fbm.cpp
+    src/noise/fbm.cpp
     src/noise/perlin.cpp
 
     src/rendering/noise_texture.cpp
