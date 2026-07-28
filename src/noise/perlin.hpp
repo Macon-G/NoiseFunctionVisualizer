@@ -3,6 +3,7 @@
 #include "generator.hpp"
 
 namespace Noise {
+	
 	class Perlin final : public Generator {
 	public:
 		explicit Perlin(uint32_t seed);
