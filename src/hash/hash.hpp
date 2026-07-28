@@ -7,11 +7,6 @@ namespace Noise::Hash {
 
 	// --=== Basic hashing functions ===--
 
-	[[nodiscard]] uint32_t Hash1D(
-		int32_t x,
-		uint32_t seed
-	);
-
 	[[nodiscard]] uint32_t Hash2D(
 		int32_t x,
 		int32_t y,
@@ -23,13 +18,7 @@ namespace Noise::Hash {
 	);
 
 
-	// --=== Deterministic RNG functions ===--
-
-	float Rand01(
-		int32_t x,
-		uint32_t seed
-	); // Returns [0.0f, 1.0f)
-
+	// --=== Deterministic coordinate-based RNG functions ===--
 	float Rand01(
 		int32_t x,
 		int32_t y,
@@ -38,23 +27,10 @@ namespace Noise::Hash {
 
 	float RandMax(
 		int32_t x,
-		uint32_t seed,
-		float max
-	); // Returns [0.0f, max)
-
-	float RandMax(
-		int32_t x,
 		int32_t y,
 		uint32_t seed,
 		float max
 	); // Returns [0.0f, max)
-
-	float RandRange(
-		int32_t x,
-		uint32_t seed,
-		float min,
-		float max
-	); // Returns [min, max)
 
 	float RandRange(
 		int32_t x,

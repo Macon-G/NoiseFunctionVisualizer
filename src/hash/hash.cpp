@@ -16,18 +16,6 @@ namespace Noise::Hash {
 
     }
 
-    uint32_t Hash1D(int32_t x, uint32_t seed) {
-        uint32_t h =
-            static_cast<uint32_t>(x) ^
-            (seed * PRIME_SEED);
-
-        h = ((h >> 16) ^ h) * AVALANCHE_PRIME;
-        h = ((h >> 16) ^ h) * AVALANCHE_PRIME;
-        h = (h >> 16) ^ h;
-
-        return h;
-    }
-
     uint32_t Hash2D(int32_t x, int32_t y, uint32_t seed) {
         uint32_t h =
             (static_cast<uint32_t>(x) * PRIME_X) ^
@@ -54,16 +42,8 @@ namespace Noise::Hash {
         return h;
     }
 
-    float Rand01(int32_t x, uint32_t seed) {
-        return ToFloat01(Hash1D(x, seed));
-    }
-
     float Rand01(int32_t x, int32_t y, uint32_t seed) {
         return ToFloat01(Hash2D(x, y, seed));
-    }
-
-    float RandMax(int32_t x, uint32_t seed, float max) {
-        return Rand01(x, seed) * max;
     }
 
     float RandMax(
@@ -73,15 +53,6 @@ namespace Noise::Hash {
         float max
     ) {
         return Rand01(x, y, seed) * max;
-    }
-
-    float RandRange(
-        int32_t x,
-        uint32_t seed,
-        float min,
-        float max
-    ) {
-        return min + Rand01(x, seed) * (max - min);
     }
 
     float RandRange(
