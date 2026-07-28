@@ -9,5 +9,5 @@ float Noise::White::Sample(float x, float y) const {
 	int gx = Math::FloorToInt(x);
 	int gy = Math::FloorToInt(y);
 
-	return Hash::Rand01(gx, gy, seed_);
+	return Hash::Rand01(gx, gy, seed_) * 2.0f - 1.0f;
 }
