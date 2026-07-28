@@ -97,6 +97,7 @@ add_executable(NoiseFunctionVisualizer
 
     src/noise/fbm.cpp
     src/noise/perlin.cpp
+	src/noise/white.cpp
 
     src/rendering/noise_texture.cpp
 )
