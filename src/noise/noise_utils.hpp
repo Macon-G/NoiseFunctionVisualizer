@@ -4,6 +4,7 @@
 #include <cmath>
 #include <algorithm>
 #include <numbers>
+#include <cstdint>
 
 namespace Noise::Math {
 	struct GradientVector {
@@ -97,8 +98,8 @@ namespace Noise::Math {
 		return (v - a) / (b - a);
 	}
 
-	inline constexpr int FloorToInt(float x) {
-		return static_cast<int>(std::floorf(x));
+	inline constexpr int32_t FloorToInt(float x) noexcept {
+		return static_cast<int32_t>(std::floorf(x));
 	} 
 
 	inline constexpr float Clamp(
