@@ -97,6 +97,10 @@ namespace Noise::Math {
 		return (v - a) / (b - a);
 	}
 
+	inline constexpr int FloorToInt(float x) {
+		return static_cast<int>(std::floorf(x));
+	} 
+
 	inline constexpr float Clamp(
 		float v,
 		float min,
