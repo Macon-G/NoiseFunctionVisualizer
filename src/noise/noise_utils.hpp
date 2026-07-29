@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <numbers>
 #include <cstdint>
+#include <stdexcept>
+#include <limits>
 
 namespace Noise::Math {
 	struct GradientVector {
@@ -59,6 +61,32 @@ namespace Noise::Math {
 			}
 
 			return sum;
+		}
+
+		constexpr float Sqrt(float x) {
+			// Newton-Raphson method
+
+			if (x < 0.0) {
+				// Since throwing an exception is illegal at compile-time,
+				// causes compilation to fail if given a negative input.
+				// This is 100% intentional, since it is impossible to take
+				// the square root of a negative number.
+				throw std::invalid_argument("Cannot take the square root of a negative number");
+			}
+			if (x == 0.0 || x == std::numeric_limits<float>::infinity()) {
+				return x;
+			}
+			
+			float result = x;
+			float prev = 0.0f;
+
+			// Stabilize the value
+			while (result != prev) {
+				result = 0.5 * (result + x / result);
+				prev = result;
+			}
+
+			return result;
 		}
 	}
 
