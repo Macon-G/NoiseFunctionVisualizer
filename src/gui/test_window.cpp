@@ -1,4 +1,6 @@
-#include "test_window.hpp"
+#include "gui/test_window.hpp"
+
+#include <imgui.h>
 
 TestWindow::TestWindow(bool &show_demo_window)
 	: show_demo_window_(show_demo_window) {}

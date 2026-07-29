@@ -1,7 +1,7 @@
-#include "value.hpp"
+#include "noise/generators/value.hpp"
 
-#include "hash.hpp"
-#include "noise_utils.hpp"
+#include "utility/hash.hpp"
+#include "noise/noise_utils.hpp"
 
 Noise::Value::Value(uint32_t seed) : seed_(seed) {}
 

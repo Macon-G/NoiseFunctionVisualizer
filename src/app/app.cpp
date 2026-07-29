@@ -1,7 +1,8 @@
-#include "app.hpp"
-#include "test_window.hpp"
-#include "settings_window.hpp"
-#include "noise_view_window.hpp"
+#include "app/app.hpp"
+
+#include "gui/test_window.hpp"
+#include "gui/settings_window.hpp"
+#include "gui/noise_view_window.hpp"
 
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>

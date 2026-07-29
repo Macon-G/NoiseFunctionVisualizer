@@ -1,6 +1,7 @@
-#include "settings_window.hpp"
-#include "noise_project.hpp"
-#include "hash.hpp"
+#include "gui/settings_window.hpp"
+
+#include "noise/noise_project.hpp"
+#include "utility/hash.hpp"
 
 #include <string>
 

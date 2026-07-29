@@ -1,7 +1,9 @@
 #pragma once
 
-#include "gui_window.hpp"
-#include "noise_project.hpp"
+#include "gui/gui_window.hpp"
+#include "noise/noise_project.hpp"
+
+#include <imgui.h>
 
 class SettingsWindow : public GuiWindow {
 public:

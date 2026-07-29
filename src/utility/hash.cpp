@@ -1,4 +1,4 @@
-#include "hash.hpp"
+#include "utility/hash.hpp"
 
 namespace Noise::Hash {
 

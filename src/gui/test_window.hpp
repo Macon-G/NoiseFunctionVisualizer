@@ -1,5 +1,6 @@
 #pragma once
-#include "gui_window.hpp"
+
+#include "gui/gui_window.hpp"
 
 class TestWindow final : public GuiWindow {
 public:

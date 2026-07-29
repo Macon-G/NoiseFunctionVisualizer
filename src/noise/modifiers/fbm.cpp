@@ -1,4 +1,4 @@
-#include "fbm.hpp"
+#include "noise/modifiers/fbm.hpp"
 
 Noise::FBM::FBM(
 	const Generator& source,

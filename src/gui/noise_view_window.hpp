@@ -1,9 +1,9 @@
 #pragma once
 
-#include "gui_window.hpp"
-#include "noise_project.hpp"
-#include "noise_texture.hpp"
-#include "perlin.hpp"
+#include "gui/gui_window.hpp"
+#include "noise/noise_project.hpp"
+#include "rendering/noise_texture.hpp"
+#include "noise/generators/perlin.hpp"
 
 #include <vector>
 

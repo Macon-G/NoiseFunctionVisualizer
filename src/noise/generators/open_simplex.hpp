@@ -1,7 +1,7 @@
 #pragma once
 
-#include "generator.hpp"
-#include "noise_utils.hpp"
+#include "noise/generator.hpp"
+#include "noise/noise_utils.hpp"
 
 #include <cstdint>
 

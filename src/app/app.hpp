@@ -1,6 +1,8 @@
 #pragma once
-#include "noise_project.hpp"
-#include "window_manager.hpp"
+
+#include "noise/noise_project.hpp"
+#include "app/window_manager.hpp"
+
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 

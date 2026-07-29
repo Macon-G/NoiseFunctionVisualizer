@@ -1,7 +1,7 @@
-#include "worley.hpp"
+#include "noise/generators/worley.hpp"
 
-#include "hash.hpp"
-#include "noise_utils.hpp"
+#include "utility/hash.hpp"
+#include "noise/noise_utils.hpp"
 
 #include <cmath>
 

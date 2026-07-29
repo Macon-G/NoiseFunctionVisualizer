@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gui_window.hpp"
+#include "gui/gui_window.hpp"
 
 #include <memory>
 #include <vector>

@@ -1,7 +1,7 @@
-#include "white.hpp"
+#include "noise/generators/white.hpp"
 
-#include "hash.hpp"
-#include "noise_utils.hpp"
+#include "utility/hash.hpp"
+#include "noise/noise_utils.hpp"
 
 Noise::White::White(uint32_t seed) : seed_(seed) {}
 

@@ -1,6 +1,7 @@
-#include "perlin.hpp"
-#include "hash.hpp"
-#include "noise_utils.hpp"
+#include "noise/generators/perlin.hpp"
+
+#include "utility/hash.hpp"
+#include "noise/noise_utils.hpp"
 
 // #include <cmath>
 

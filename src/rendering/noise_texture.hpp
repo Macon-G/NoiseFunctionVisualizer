@@ -1,6 +1,6 @@
 #pragma once
 
-#include "generator.hpp"
+#include "noise/generator.hpp"
 
 #include <imgui.h>
 #include <glad/gl.h>

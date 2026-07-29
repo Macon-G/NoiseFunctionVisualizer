@@ -1,5 +1,6 @@
 #pragma once
-#include "cstdint"
+
+#include <cstdint>
 
 struct NoiseProject {
 	uint32_t seed = 0;

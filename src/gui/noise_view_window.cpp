@@ -1,5 +1,6 @@
-#include "noise_view_window.hpp"
-#include "fbm.hpp"
+#include "gui/noise_view_window.hpp"
+
+#include "noise/modifiers/fbm.hpp"
 
 #include <imgui.h>
 

@@ -1,7 +1,7 @@
-#include "open_simplex.hpp"
+#include "noise/generators/open_simplex.hpp"
 
-#include "hash.hpp"
-#include "noise_utils.hpp"
+#include "utility/hash.hpp"
+#include "noise/noise_utils.hpp"
 
 #include <cstddef>
 #include <cstdint>

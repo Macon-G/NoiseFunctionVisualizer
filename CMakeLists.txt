@@ -93,24 +93,22 @@ add_executable(NoiseFunctionVisualizer
     src/gui/settings_window.cpp
     src/gui/test_window.cpp
 
-    src/hash/hash.cpp
+	src/noise/generators/open_simplex.cpp
+    src/noise/generators/perlin.cpp
+	src/noise/generators/value.cpp
+	src/noise/generators/white.cpp
+	src/noise/generators/worley.cpp
 
-    src/noise/fbm.cpp
-    src/noise/perlin.cpp
-	src/noise/white.cpp
+    src/noise/modifiers/fbm.cpp
 
     src/rendering/noise_texture.cpp
+    
+    src/utility/hash.cpp
 )
 
 target_include_directories(NoiseFunctionVisualizer
     PRIVATE
-        src
-        src/app
-        src/gui
-        src/hash
-        src/noise
-        src/rendering
-        src/window_manager
+        "{CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 target_compile_definitions(NoiseFunctionVisualizer

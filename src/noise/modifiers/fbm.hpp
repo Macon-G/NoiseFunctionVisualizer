@@ -1,6 +1,6 @@
 #pragma once
 
-#include "generator.hpp"
+#include "noise/generator.hpp"
 
 namespace Noise {
 	class FBM final : public Generator {

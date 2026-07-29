@@ -1,5 +1,5 @@
-#include "noise_texture.hpp"
-#include "noise_utils.hpp"
+#include "rendering/noise_texture.hpp"
+#include "noise/noise_utils.hpp"
 
 NoiseTexture::NoiseTexture(int width, int height)
 	: width_(width), height_(height), pixels_(width * height * 4)

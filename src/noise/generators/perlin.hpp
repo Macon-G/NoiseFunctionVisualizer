@@ -1,16 +1,17 @@
 #pragma once
 
-#include "generator.hpp"
-
-#include <cstdint>
+#include "noise/generator.hpp"
 
 namespace Noise {
-	class Value : public Generator {
+	
+	class Perlin final : public Generator {
 	public:
-		explicit Value(uint32_t seed);
+		explicit Perlin(uint32_t seed);
 
 		[[nodiscard]] float Sample(float x, float y) const override;
+	
 	private:
 		uint32_t seed_;
 	};
+	
 }
