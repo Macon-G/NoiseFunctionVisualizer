@@ -45,39 +45,32 @@ FetchContent_MakeAvailable(glfw)
 # Dear ImGui
 # =========================
 
-FetchContent_Declare(
-    imgui
-    GIT_REPOSITORY https://github.com/ocornut/imgui.git
-    GIT_TAG docking
-)
-
-FetchContent_MakeAvailable(imgui)
-
 add_library(imgui STATIC
-    ${imgui_SOURCE_DIR}/imgui.cpp
-    ${imgui_SOURCE_DIR}/imgui_demo.cpp
-    ${imgui_SOURCE_DIR}/imgui_draw.cpp
-    ${imgui_SOURCE_DIR}/imgui_tables.cpp
-    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
-    ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
-    ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+    third_party/imgui/imgui.cpp
+    third_party/imgui/imgui_demo.cpp
+    third_party/imgui/imgui_draw.cpp
+    third_party/imgui/imgui_tables.cpp
+    third_party/imgui/imgui_widgets.cpp
+
+    third_party/imgui/backends/imgui_impl_glfw.cpp
+    third_party/imgui/backends/imgui_impl_opengl3.cpp
 )
 
 target_include_directories(imgui
     PUBLIC
-        ${imgui_SOURCE_DIR}
-        ${imgui_SOURCE_DIR}/backends
+        "${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui/"
+        "${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui/backends"
+)
+
+target_compile_definitions(imgui
+    PUBLIC
+        GLFW_INCLUDE_NONE
 )
 
 target_link_libraries(imgui
     PUBLIC
         glfw
         glad_gl_core_33
-)
-
-target_compile_definitions(imgui
-    PUBLIC
-        GLFW_INCLUDE_NONE
 )
 
 # =========================
