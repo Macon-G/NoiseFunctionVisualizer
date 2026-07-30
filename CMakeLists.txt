@@ -108,7 +108,7 @@ add_executable(NoiseFunctionVisualizer
 
 target_include_directories(NoiseFunctionVisualizer
     PRIVATE
-        "{CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 target_compile_definitions(NoiseFunctionVisualizer
