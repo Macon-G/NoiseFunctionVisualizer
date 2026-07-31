@@ -86,17 +86,18 @@ add_executable(NoiseFunctionVisualizer
     src/gui/settings_window.cpp
     src/gui/test_window.cpp
 
-	src/noise/generators/open_simplex.cpp
-    src/noise/generators/perlin.cpp
-	src/noise/generators/value.cpp
-	src/noise/generators/white.cpp
-	src/noise/generators/worley.cpp
-
+	src/noise/functions/open_simplex.cpp
+    src/noise/functions/perlin.cpp
+	src/noise/functions/value.cpp
+	src/noise/functions/white.cpp
+	src/noise/functions/worley.cpp
+    
     src/noise/modifiers/fbm.cpp
+    
+    src/noise/math.cpp
+    src/noise/util.cpp
 
     src/rendering/noise_texture.cpp
-    
-    src/utility/hash.cpp
 )
 
 target_include_directories(NoiseFunctionVisualizer
