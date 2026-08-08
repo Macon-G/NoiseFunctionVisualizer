@@ -93,9 +93,6 @@ add_executable(NoiseFunctionVisualizer
 	src/noise/functions/worley.cpp
     
     src/noise/modifiers/fbm.cpp
-    
-    src/noise/math.cpp
-    src/noise/util.cpp
 
     src/rendering/noise_texture.cpp
 )

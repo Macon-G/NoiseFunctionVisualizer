@@ -1,7 +1,42 @@
-#include "noise/noise.hpp"
+#include "noise/functions.hpp"
+#include "noise/math.hpp"
+#include "noise/utilities.hpp"
+
+#include <cstddef>
 
 namespace Noise::Functions {
+	
 	namespace {	// Anonymous namespace
+		
+		// Forward Declarations
+
+		[[nodiscard]]
+		const Math::Vec2& GetGradient(
+			i32 lattice_x,
+			i32 lattice_y,
+			u32 seed
+		);
+
+		[[nodiscard]]
+		float Contribution (
+			i32 lattice_x,
+			i32 lattice_y,
+			float dx,
+			float dy,
+			u32 seed
+		);
+
+		[[nodiscard]]
+		float EvaluateLattice(
+			i32 lattice_x,
+			i32 lattice_y,
+			float local_x,
+			float local_y,
+			u32 seed
+		);
+
+		// Constants
+
 		constexpr float SKEW_2D = (Math::Sqrt(3.0f) - 1.0f) / 2.0f;
 
 		constexpr float UNSKEW_2D = (1.0f - Math::Sqrt(3.0f)) / 6.0f;
@@ -10,7 +45,56 @@ namespace Noise::Functions {
 
 		constexpr float NORMALIZATION_2D = 1.0f / 0.01001634121365712f;
 		
-		[[nodiscard]]
+		// Helper functions
+
+		const Noise::Math::Vec2& GetGradient(
+			i32 lattice_x,
+			i32 lattice_y,
+			u32 seed
+		) {
+			const uint32_t hash =
+				Utilities::Hash2D(lattice_x, lattice_y, seed);
+
+			const std::size_t index =
+				static_cast<std::size_t>(hash) %
+				Math::GRADIENT_VECTORS.size();
+
+			return Math::GRADIENT_VECTORS[index];
+		}
+
+		float Contribution(
+			i32 lattice_x,
+			i32 lattice_y,
+			float dx,
+			float dy,
+			u32 seed
+		) {
+			// Vertices outside the influence radius contribute nothing.
+			float attenuation =
+				RSQUARED_2D -
+				dx * dx -
+				dy * dy;
+
+			if (attenuation <= 0.0f) {
+				return 0.0f;
+			}
+
+			const Math::Vec2& gradient =
+				GetGradient(lattice_x, lattice_y, seed);
+
+			const float extrapolation =
+				gradient.x * dx +
+				gradient.y * dy;
+
+			// attenuation^4 creates a smooth radial falloff.
+			const float attenuation_sq =
+				attenuation * attenuation;
+
+			return attenuation_sq *
+				attenuation_sq *
+				extrapolation;
+		}
+
 		float EvaluateLattice(
 			i32 lattice_x,
 			i32 lattice_y,
@@ -88,64 +172,15 @@ namespace Noise::Functions {
 			return value * NORMALIZATION_2D;
 		}
 
-		[[nodiscard]]
-		float Contribution(
-			i32 lattice_x,
-			i32 lattice_y,
-			float dx,
-			float dy,
-			u32 seed
-		) {
-			// Vertices outside the influence radius contribute nothing.
-			float attenuation =
-				RSQUARED_2D -
-				dx * dx -
-				dy * dy;
-
-			if (attenuation <= 0.0f) {
-				return 0.0f;
-			}
-
-			const Math::GradientVector& gradient =
-				GetGradient(lattice_x, lattice_y, seed);
-
-			const float extrapolation =
-				gradient.x * dx +
-				gradient.y * dy;
-
-			// attenuation^4 creates a smooth radial falloff.
-			const float attenuation_sq =
-				attenuation * attenuation;
-
-			return attenuation_sq *
-				attenuation_sq *
-				extrapolation;
-		}
-
-		[[nodiscard]]
-		const Noise::Math::GradientVector& GetGradient(
-			i32 lattice_x,
-			i32 lattice_y,
-			u32 seed
-		) {
-			const uint32_t hash =
-				Utilities::Hash2D(lattice_x, lattice_y, seed);
-
-			const std::size_t index =
-				static_cast<std::size_t>(hash) %
-				Constants::GRADIENT_VECTORS.size();
-
-			return Constants::GRADIENT_VECTORS[index];
-		}
 	}
 
-	float OpenSimplex(float x, float y, u32 seed) {
+	float OpenSimplex(const NoiseParameters& params) {
 		// Transform the square coordinate space into the triangular
 		// lattice coordinate space used by OpenSimplex2.
-		const float skew = SKEW_2D * (x + y);
+		const float skew = SKEW_2D * (params.x + params.y);
 
-		const float x_skewed = x + skew;
-		const float y_skewed = y + skew;
+		const float x_skewed = params.x + skew;
+		const float y_skewed = params.y + skew;
 
 		// Find the base lattice coordinates.
 		const int32_t lattice_x = Math::FloorToInt(x_skewed);
@@ -163,7 +198,7 @@ namespace Noise::Functions {
 			lattice_y,
 			local_x,
 			local_y,
-			seed
+			params.seed
 		);
 	}
 }
