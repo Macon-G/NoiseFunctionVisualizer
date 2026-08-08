@@ -1,7 +1,8 @@
 #pragma once
 
-#include "noise/noise_project.hpp"
+#include "app/noise_editor_state.hpp"
 #include "app/window_manager.hpp"
+#include "project/noise_project.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -23,7 +24,8 @@ private:
 	void RenderFrame();
 
 private:
-	NoiseProject project_;
+	NoiseEditorState state_;
+	
 	WindowManager window_manager_;
 
 	// bool show_demo_window_ = true;

@@ -1,17 +1,26 @@
 #pragma once
 
+#include "app/noise_editor_state.hpp"
 #include "gui/gui_window.hpp"
-#include "noise/noise_project.hpp"
-
-#include <imgui.h>
+#include "project/noise_project.hpp"
 
 class SettingsWindow : public GuiWindow {
 public:
-	SettingsWindow(NoiseProject& project);
+	explicit SettingsWindow(
+		NoiseEditorState& state
+	);
+	
 	void Draw() override;
+
+private:
+	bool DrawFunctionTypeCombo();
+
+	bool DrawWorleyDistanceCombo();
+
+	bool DrawWorleyOutputCombo();
+
 private:
 	char seed_string_[64] = "My Awesome Seed!";
-	NoiseProject& project_;
-	ImVec2 window_size_;
-	ImVec2 window_pos_;
+
+	NoiseEditorState& state_;
 };

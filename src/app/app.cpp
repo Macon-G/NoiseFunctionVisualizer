@@ -14,6 +14,8 @@
 #include <stdexcept>
 
 App::App() {
+	state_.project = NoiseProject();
+
 	try {
 		InitializeGlfw();
 		InitializeWindow();
@@ -25,11 +27,12 @@ App::App() {
 	}
 
 	//window_manager_.AddWindow<TestWindow>(show_demo_window_);
-	window_manager_.AddWindow<SettingsWindow>(project_);
-	window_manager_.AddWindow<NoiseViewWindow>(project_);
+	window_manager_.AddWindow<SettingsWindow>(state_);
+	window_manager_.AddWindow<NoiseViewWindow>(state_);
 }
 
 App::~App() {
+	window_manager_.Clear();	// Ensure OpenGL dependent objects are destroyed before OpenGL context is destroyed.
 	Shutdown();
 }
 
@@ -103,8 +106,8 @@ void App::InitializeImGui() {
 	
 	ImGuiIO& io = ImGui::GetIO();
 
-	io.ConfigFlags |=
-		ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
 	ImGui::StyleColorsDark();
 

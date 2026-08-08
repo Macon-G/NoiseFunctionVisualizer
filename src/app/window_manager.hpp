@@ -27,6 +27,10 @@ public:
 			window->Draw();
 		}
 	}
+
+	void Clear() {
+		windows_.clear();
+	}
 private:
 	std::vector<std::unique_ptr<GuiWindow>> windows_;
 };
