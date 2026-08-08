@@ -1,5 +1,9 @@
 #include "rendering/noise_texture.hpp"
-#include "noise/noise_utils.hpp"
+
+#include "noise/noise.hpp"
+#include "noise/function_registry.hpp"
+
+#include <stdexcept>
 
 NoiseTexture::NoiseTexture(int width, int height)
 	: width_(width), height_(height), pixels_(width * height * 4)
@@ -33,23 +37,42 @@ NoiseTexture::~NoiseTexture() {
 	}
 }
 
-void NoiseTexture::Generate(
-	const Noise::Generator& generator,
-	float scale
-) {
+void NoiseTexture::Generate(const NoiseProject& project) {
+	const Noise::Function source = Noise::Registry::GetFunction(project.function_type);
+
+	Noise::Functions::NoiseParameters source_params{
+		.x = 0.0f,
+		.y = 0.0f,
+		.seed = project.seed,
+		.worley_distance_type = project.worley_distance,
+		.worley_output_mode = project.worley_output
+	};
+
 	for (int y = 0; y < height_; ++y) {
 		for (int x = 0; x < width_; ++x) {
-			float nx = static_cast<float>(x) * scale;
-			float ny = static_cast<float>(y) * scale;
+			source_params.x = static_cast<float>(x) * project.scale;
+			source_params.y = static_cast<float>(y) * project.scale;
 
-			float value = generator.Sample(nx, ny); // [-1, 1]
-			float display = Noise::Math::Clamp(
-				value * 0.5f + 0.5f,
-				0.0f,
-				1.0f
-			);
+			float value = 0.0f;
+			
+			if (project.fbm_params.octaves > 1) {
+				value = Noise::Modifiers::FBM(
+					source,
+					source_params,
+					project.fbm_params
+				);
+			}
+			else {
+				value = source(source_params);
+			}
 
-			unsigned char gray = static_cast<unsigned char>(display * 255.0f);
+			const float normalized = value * 0.5f + 0.5f;	// All noise functions should return [-1, 1]
+
+			if (normalized < 0.0f || normalized > 1.0f) {
+				throw std::runtime_error("Noise value out of displayable range");
+			}
+
+			unsigned char gray = static_cast<unsigned char>(normalized * 255.0f);
 
 			const int index = (y * width_ + x) * 4;
 
